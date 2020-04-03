@@ -13,5 +13,5 @@ Będzie też wybór map.
 
 I piękne menu.
 
-<img src="https://im3.ezgif.com/tmp/ezgif-3-19b0c1db8c56.gif">
+<blockquote class="imgur-embed-pub" lang="en" data-id="SsXulpe"><a href="//imgur.com/SsXulpe">View post on imgur.com</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
