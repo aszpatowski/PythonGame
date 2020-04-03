@@ -11,3 +11,5 @@ roznego rodzaju bronie, które uatrakcyjnią rozgrywke.
 
 Będzie też wybór map.
 
+I piękne menu.
+
