@@ -13,3 +13,5 @@ Będzie też wybór map.
 
 I piękne menu.
 
+<img src="https://im3.ezgif.com/tmp/ezgif-3-19b0c1db8c56.gif">
+
