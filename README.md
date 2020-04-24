@@ -11,3 +11,6 @@ roznego rodzaju bronie, które uatrakcyjnią rozgrywke.
 
 Będzie też wybór map.
 
+I piękne menu.
+
+<img src="https://i.imgur.com/SsXulpe.gif">

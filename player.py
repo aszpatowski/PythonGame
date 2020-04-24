@@ -1,5 +1,5 @@
 import pygame, math
-class Player(pygame.sprite.Sprite):
+class Player(object):
     playerX = 0.0
     playerY = 0.0
     playerVX = 0.0
@@ -8,20 +8,14 @@ class Player(pygame.sprite.Sprite):
     joystickID = 0
     rect = 0
     def __init__(self,joystickID,XY):
-        pygame.sprite.Sprite.__init__(self)
-        self.playerimage = pygame.image.load("playerimage1.png")
-        self.playerSprite = pygame.sprite.Sprite()
-        self.playerSprite.image = self.playerimage
-        self.playerSprite.rect = XY        # W ROBOCIE, BEDE PRZERABIAŁ NA SPRITE ZEBY ZROBIC
-        self.playerold = self.playerimage  # SENSOWNĄ KOLIZJE
+        self.playerimage = pygame.image.load("textures/players/player1/sprite_0.png")
+        self.playerold = self.playerimage
         pygame.joystick.init()
         self.joystickID = joystickID
         self.player = pygame.joystick.Joystick(self.joystickID)
         self.playerX = XY[0]
         self.playerY = XY[1]
         self.player.init()
-        print(type(self.playerimage))
-
     def movement(self):
         self.playerVX = round(self.player.get_axis(0), 1)
         self.playerVY = round(self.player.get_axis(1), 1)
@@ -39,8 +33,7 @@ class Player(pygame.sprite.Sprite):
                     math.atan2(round(self.player.get_axis(2), 2), round(self.player.get_axis(3), 2)))
         else:
             if (round(self.player.get_axis(2), 2) != 0 or round(self.player.get_axis(3), 2) != 0):
-                self.playerAngle = math.degrees(
-                    math.atan2(round(self.player.get_axis(3), 2), round(self.player.get_axis(2), 2)))
+                self.playerAngle = math.degrees(math.atan2(round(self.player.get_axis(3), 2), round(self.player.get_axis(2), 2)))
 
 
     def draw(self,screen):
@@ -48,7 +41,4 @@ class Player(pygame.sprite.Sprite):
        # print(type(self.rect))
         self.playerimage = pygame.transform.rotate(self.playerold, self.playerAngle)
         return screen.blit(self.playerimage,self.rect)
-
-        #print(self.playerimage.)
-        #print((self.player1.playerX,self.player1.playerY))
 
