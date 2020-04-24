@@ -30,7 +30,7 @@ I piękne menu.
   <img src="https://raw.githubusercontent.com/aszpatowski/PythonGame/master/textures/guns/ak47.png">
   <img src="https://raw.githubusercontent.com/aszpatowski/PythonGame/master/textures/guns/pistol.png">
   
-  Gracz (64x64)
+  Gracz (postacie pozostałych graczy, będą utworzone po stworzeniu wszystkich animacji do gracza pierwszego, ponieważ ich wygląd będzie się różnił tylko kolorem skóry i ubrania.) (64x64)
   <img src="https://raw.githubusercontent.com/aszpatowski/PythonGame/master/textures/players/player1/sprite_0.png">
   <img src="https://raw.githubusercontent.com/aszpatowski/PythonGame/master/textures/players/player1/sprite_1.png">
   <img src="https://raw.githubusercontent.com/aszpatowski/PythonGame/master/textures/players/player1/sprite_2.png">
