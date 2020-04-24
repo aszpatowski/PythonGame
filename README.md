@@ -13,4 +13,9 @@ Będzie też wybór map.
 
 I piękne menu.
 
+<<<<<<< HEAD
 <img src="https://i.imgur.com/SsXulpe.gif">
+=======
+<img src="https://i.imgur.com/SsXulpe.gif">
+
+>>>>>>> 80110576ce7ba0e0e1107189600764bc1a2c0ff8
