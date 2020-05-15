@@ -13,4 +13,10 @@ Będzie też wybór map.
 
 I piękne menu.
 # Film przedstawiajacy stan podczas 3 raportu (zawiera dźwięki)
-<video><source src='https://i.imgur.com/tVFIgSf.mp4' type='video/mp4'></video>
+https://i.imgur.com/tVFIgSf.mp4
+
+Zostało do zrobienia:
+ - menu,
+ - dodatkowe mapy,
+ - modele postaci dla pozostalych graczy,
+ - mechanika wygrania rundy, przyznanie punktów zwycięzcy i reset planszy.
