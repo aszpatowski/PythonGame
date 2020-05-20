@@ -1,6 +1,6 @@
-# PythonGame
-Tytuł: jeszcze nie, spokojnie
-
+# PROJEKT W JĘZYKU SKRYPTOWYM
+Tytuł: SUPER CRUEL ARENA
+<img src='https://i.imgur.com/4PZQvIL.png'>
 Gra na pady od 2 do 4 osób.
 
 Gracze spawnują się na arenie i rywalizują między sobą o przeżycie.
