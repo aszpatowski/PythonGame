@@ -1,6 +1,6 @@
 # PROJEKT W JĘZYKU SKRYPTOWYM
-Tytuł: SUPER CRUEL ARENA
-<img src='https://i.imgur.com/4PZQvIL.png'>
+Tytuł: SUPER CRUEL ARENA<br>
+<img src='https://i.imgur.com/4PZQvIL.png'><br>
 Gra na pady od 2 do 4 osób.
 
 Gracze spawnują się na arenie i rywalizują między sobą o przeżycie.
