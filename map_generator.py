@@ -11,7 +11,7 @@ class Map:
         self.HEIGHT = HEIGHT
         self.WIDTH = WIDTH
 
-        self.TILES_H_A = self.HEIGHT // self.TILE_SIZE  # ILOŚC KAFELEK 32X32 KTORE SIE ZMIESZCZA NA#
+        self.TILES_H_A = self.HEIGHT // self.TILE_SIZE  # ILOŚC KAFELEK 64X64 KTORE SIE ZMIESZCZA NA#
         # EKRANIE O WYKOSOSCI HEIGHT
         self.TILES_W_A = self.WIDTH // self.TILE_SIZE  # ANALOGICZNE TYLKO DO SZEROKOSCI WIDTH
         self.MAP_ARRAY = [[0] * self.TILES_W_A] * self.TILES_H_A

@@ -10,10 +10,11 @@ from PythonGame.bullet import *
 
 
 class Game(object):
-    TPS_DELTA = 0.0
-    TPS_MAX = 60
+    TPS_MAX = 120.0
     width = 1344
     height = 768
+    #width = 1920
+    #height = 1080
     WEAPONS_AVAILABLE = [AK47, Pistol, Knife, Baseball]
     weapons_in_game = []
     bullets_in_game = []
@@ -28,6 +29,8 @@ class Game(object):
         pygame.mixer.init(22100, -16, 2, 64)
         pygame.font.init()
         self.screen = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
+        pygame.display.set_caption("Super Cruel Arena")
+        pygame.display.set_icon(pygame.image.load("logos/icon.png"))
         self.tps_clock = pygame.time.Clock()
         self.Map = Map(self.width, self.height)
         self.Spawnplayers(pygame.joystick.get_count())  # spawnowanie graczy zaleznie od ilosc padow
@@ -41,14 +44,13 @@ class Game(object):
             for event in pygame.event.get():
                 if (event.type == pygame.QUIT):
                     sys.exit(0)
-            self.TPS_DELTA += self.tps_clock.tick() / 1000.0
-            while self.TPS_DELTA > (1 / self.TPS_MAX):
-                self.TPS_DELTA -= 1 / self.TPS_MAX
+            self.tps_clock.tick(self.TPS_MAX)
+            pygame.display.set_caption("Super Cruel Arena FPS:{}".format(self.tps_clock.get_fps()))
+            print(len(self.weapons_in_game))
             self.frames += 1
             if self.frames == 2 * self.TPS_MAX:
                 self.frames = 0
                 self.Spawnweapons()
-
             self.check_collision_between_players(pygame.joystick.get_count())
             self.check_collision_environment(pygame.joystick.get_count())
             self.weapon_interreaction()
@@ -62,7 +64,7 @@ class Game(object):
         # pozniej miejsce spawnu bedzie zalezne od mapy
 
     def Spawnweapons(self):
-        if random.randint(0, 3) == 3 and len(self.weapons_in_game) <= 4:
+        if random.randint(0, 1) == 1 and len(self.weapons_in_game) <= 6:
             while True:
                 randomX = random.randint(0, len(maps.game_map1[0]) - 1)  # random.randint ma przedział zamknięty
                 randomY = random.randint(0, len(maps.game_map1) - 1)
@@ -80,7 +82,7 @@ class Game(object):
         for weapon in self.weapons_in_game:
             weapon.draw_and_check(self.screen)
         for player in self.players:
-            if player.alive == 1:
+            if player.alive == 1 and player.stun_time == 0:
                 player.movement()
                 player.interreaction(self.bullets_in_game, Bullet)
             player.draw(self.screen)
@@ -119,8 +121,8 @@ class Game(object):
                                 player.playerX -= player.playerVX
                                 player.playerY -= player.playerVY
                                 player.playerVX *= -abs(math.sin(math.atan2(deltaX, deltaY)))
-
                                 player.playerVY *= -abs(math.cos(math.atan2(deltaX, deltaY)))
+
                             else:
                                 continue
                         else:
@@ -144,11 +146,15 @@ class Game(object):
                 if weapon.place == True and \
                         math.sqrt((player.playerX - weapon.x - 32) ** 2 + \
                                   (player.playerY - weapon.y - 32) ** 2) < 64:
-                    if (abs(weapon.vx) + abs(weapon.vy)) > 0.2 and player.joystickID != weapon.throw_player_id \
+                    if (abs(weapon.vx) + abs(weapon.vy)) > 4 and player.joystickID != weapon.throw_player_id \
                             and player.alive == 1:
                         self.sound_punch_weapon.play()
-                        player.agony(10 * weapon.vx, 10 * weapon.vy)
-                        weapon.vx = weapon.vy = 0.0
+                        if weapon.TYPE == 3:
+                            player.agony(10 * weapon.vx, 10 * weapon.vy)
+                            weapon.vx = weapon.vy = 0.0
+                        else:
+                            player.stun(10 * weapon.vx, 10 * weapon.vy,weapon.STUN)
+                            weapon.vx = weapon.vy = 0.0
                     if len(player.weapon) == 0 and \
                             player.player.get_button(1):
                         weapon.place = False
@@ -176,7 +182,7 @@ class Game(object):
                             pass
                         # Usuwanie broni z mapy, po jej wyleceniu poza mape.
             if 0 <= weapon.x <= self.width - 32 and 0 <= weapon.y <= self.height - 32 or \
-                    self.weapons_in_game.index(weapon) not in weapons_to_delete:
+                    self.weapons_in_game.index(weapon) in weapons_to_delete:
                 continue
             else:
                 weapons_to_delete.append(self.weapons_in_game.index(weapon))

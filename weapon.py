@@ -15,6 +15,8 @@ class Weapon:
     AIR_RESISTANCE = 0.98
     TYPE = None  # 1 = ak47, 2 = pistol, 3 = knife, 4 = baseball
     throw_player_id = None
+    STUN = 0
+
     def __init__(self, X, Y, TILE_SIZE):
         self.x = X
         self.y = Y
@@ -41,16 +43,13 @@ class Guns(Weapon):
         Weapon.__init__(self, X, Y, TILE_SIZE)
 
     def draw_and_check(self, screen):  # po skonczeniu nabojow usuwamy bron
-        if self.bullets > 0:
-            if self.place:  # if self.place == True
-                self.movement()
-                self.IMAGE = self.IMAGEOLD
-                if abs(self.vx + self.vy) > 0:
-                    self.IMAGE = pygame.transform.rotate(self.IMAGEOLD,
-                                                         math.degrees(math.atan2(self.vx, self.vy)) + 135)
-                screen.blit(self.IMAGE, (self.x, self.y))
-        else:
-            del self
+        if self.place:  # if self.place == True
+            self.movement()
+            self.IMAGE = self.IMAGEOLD
+            if abs(self.vx + self.vy) > 0:
+                self.IMAGE = pygame.transform.rotate(self.IMAGEOLD,
+                                                     math.degrees(math.atan2(self.vx, self.vy)) + 135)
+            screen.blit(self.IMAGE, (self.x, self.y))
 
 
 class Cold_Weapon(Weapon):
@@ -77,6 +76,8 @@ class AK47(Guns):
                                             (self.TILE_SIZE, self.TILE_SIZE))
         self.IMAGEOLD = self.IMAGE
         self.TYPE = 1
+        self.STUN = 60
+
 
 class Pistol(Guns):
     def __init__(self, X, Y, TILE_SIZE):
@@ -87,6 +88,8 @@ class Pistol(Guns):
                                             (self.TILE_SIZE, self.TILE_SIZE))
         self.IMAGEOLD = self.IMAGE
         self.TYPE = 2
+        self.STUN = 30
+
 
 class Knife(Cold_Weapon):
     def __init__(self, X, Y, TILE_SIZE):
@@ -96,6 +99,7 @@ class Knife(Cold_Weapon):
         self.IMAGEOLD = self.IMAGE
         self.TYPE = 3
 
+
 class Baseball(Cold_Weapon):
     def __init__(self, X, Y, TILE_SIZE):
         Cold_Weapon.__init__(self, X, Y, TILE_SIZE)
@@ -103,3 +107,4 @@ class Baseball(Cold_Weapon):
                                             (self.TILE_SIZE, self.TILE_SIZE))
         self.IMAGEOLD = self.IMAGE
         self.TYPE = 4
+        self.STUN = 90
